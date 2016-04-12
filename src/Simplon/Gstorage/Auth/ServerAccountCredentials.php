@@ -6,7 +6,7 @@ namespace Simplon\Gstorage\Auth;
  * Class ServerAccountCredentials
  * @package Simplon\Gstorage
  */
-class ServerAccountServerAccountCredentials implements ServerAccountCredentialsInterface
+class ServerAccountCredentials implements ServerAccountCredentialsInterface
 {
     /**
      * @var string
@@ -22,10 +22,28 @@ class ServerAccountServerAccountCredentials implements ServerAccountCredentialsI
      * @param string $clientEmail
      * @param string $privateKey
      */
-    public function __construct($clientEmail, $privateKey)
+    public function loadFromParams($clientEmail, $privateKey)
     {
         $this->clientEmail = $clientEmail;
         $this->privateKey = $privateKey;
+    }
+
+    /**
+     * @param string $jsonFile
+     *
+     * @return $this
+     */
+    public function loadFromJsonFile($jsonFile)
+    {
+        $data = file_get_contents($jsonFile);
+
+        if ($data)
+        {
+            $this->clientEmail = $data['client_email'];
+            $this->privateKey = $data['private_key'];
+        }
+
+        return $this;
     }
 
     /**

@@ -12,6 +12,9 @@ use Simplon\Gstorage\Data\UploadData;
  */
 class GoogleStorage
 {
+    /**
+     * @link https://developers.google.com/identity/protocols/googlescopes#autoscalerv1beta2
+     */
     const SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
 
     /**

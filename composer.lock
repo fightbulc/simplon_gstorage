@@ -1,0 +1,108 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "9c0512207d8f12889b331ed4f1f8e559",
+    "packages": [
+        {
+            "name": "fightbulc/php_curl",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fightbulc/php_curl.git",
+                "reference": "bb35c3918e1e9e4015f6ec246d5589aafa7068ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fightbulc/php_curl/zipball/bb35c3918e1e9e4015f6ec246d5589aafa7068ab",
+                "reference": "bb35c3918e1e9e4015f6ec246d5589aafa7068ab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "BauerUK",
+                    "homepage": "https://github.com/BauerUK"
+                }
+            ],
+            "description": "PHP CURL as object-oriented implementation.",
+            "homepage": "https://github.com/fightbulc/php_curl",
+            "time": "2012-10-22 00:29:11"
+        },
+        {
+            "name": "simplon/helper",
+            "version": "0.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fightbulc/simplon_helper.git",
+                "reference": "51a1db1ef9ebf0b0a423fbb027ea85be02d8674f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fightbulc/simplon_helper/zipball/51a1db1ef9ebf0b0a423fbb027ea85be02d8674f",
+                "reference": "51a1db1ef9ebf0b0a423fbb027ea85be02d8674f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Simplon\\Helper": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tino Ehrich",
+                    "email": "tino@bigpun.me",
+                    "role": "developer"
+                }
+            ],
+            "description": "General helpers which come-in helpful.",
+            "homepage": "https://github.com/fightbulc/simplon_helper",
+            "keywords": [
+                "helper",
+                "json",
+                "numbers",
+                "strings",
+                "time"
+            ],
+            "time": "2014-02-04 17:10:09"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "php": ">=5.4"
+    },
+    "platform-dev": [
+
+    ]
+}

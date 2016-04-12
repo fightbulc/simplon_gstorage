@@ -1,0 +1,29 @@
+{
+  "name": "simplon/gstorage",
+  "description": "Google Cloud Storage Helper Library",
+  "homepage": "https://github.com/fightbulc/simplon_gstorage",
+  "type": "library",
+  "keywords": [
+    "google cloud storage",
+    "client",
+    "upload",
+    "files"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tino Ehrich",
+      "email": "tino@bigpun.me",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "google/apiclient": "~1.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "Simplon\\Gplus": "src/"
+    }
+  }
+}

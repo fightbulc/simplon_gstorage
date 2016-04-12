@@ -55,7 +55,7 @@ $credentials = (new ServerAccountCredentials())->loadFromJsonFile('credentials.j
 Now all what needs to be done is to use `$credentials`:
 
 ```php
-$gstorage = new GoogleStorage($credentials);
+$gstorage = new Gstorage($credentials);
 ```
 
 # Upload a file
@@ -124,7 +124,7 @@ var_dump($response); // true|false
 # Complete example
 
 ```php
-$gstorage = new GoogleStorage(
+$gstorage = new Gstorage(
     (new ServerAccountCredentials())->loadFromJsonFile('credentials.json')
 );
 

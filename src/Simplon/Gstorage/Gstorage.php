@@ -48,10 +48,10 @@ class Gstorage
     public function upload(UploadData $data)
     {
         $obj = new \Google_Service_Storage_StorageObject();
-        $obj->setName($data->getFileName());
+        $fileName = $this->buildRandomToken();
 
         $options = [
-            'name'          => $data->getFileName(),
+            'name'          => $fileName . '.' . $data->getFileExtension(),
             'data'          => $data->getBlob(),
             'uploadType'    => 'media',
             'mimeType'      => $data->getMimeType(),
@@ -115,5 +115,24 @@ class Gstorage
         }
 
         return $this->client;
+    }
+
+    /**
+     * @param int $length
+     *
+     * @return string
+     */
+    private function buildRandomToken($length = 24)
+    {
+        $randomString = '';
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // generate token
+        for ($i = 0; $i < $length; $i++)
+        {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $randomString;
     }
 }

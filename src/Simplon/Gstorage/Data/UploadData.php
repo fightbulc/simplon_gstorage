@@ -84,6 +84,17 @@ class UploadData
     /**
      * @return string
      */
+    public function getFileExtension()
+    {
+        $parts = explode('.', $this->fileName);
+        $ext = array_pop($parts);
+
+        return strtolower($ext);
+    }
+
+    /**
+     * @return string
+     */
     public function getBlob()
     {
         return $this->blob;

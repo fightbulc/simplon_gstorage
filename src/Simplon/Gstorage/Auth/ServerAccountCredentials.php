@@ -32,6 +32,7 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
      * @param string $jsonFile
      *
      * @return $this
+     * @throws \Exception
      */
     public function loadFromJsonFile($jsonFile)
     {
@@ -39,6 +40,13 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
 
         if ($data)
         {
+            $data = json_decode($data, true);
+
+            if (empty($data['client_email']) && empty($data['private_key']))
+            {
+                throw new \Exception('Missing "client_email" and "private_key" data within JSON data');
+            }
+
             $this->clientEmail = $data['client_email'];
             $this->privateKey = $data['private_key'];
         }

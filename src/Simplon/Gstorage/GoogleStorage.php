@@ -77,12 +77,9 @@ class GoogleStorage
      */
     public function delete(ObjectData $data)
     {
-        if ($this->getStorage()->objects->delete($data->getBucket(), $data->getFileName()))
-        {
-            return true;
-        }
+        $response = $this->getStorage()->objects->delete($data->getBucket(), $data->getFileName());
 
-        return false;
+        return $response === null;
     }
 
     /**
@@ -113,8 +110,8 @@ class GoogleStorage
     {
         if ($this->client === null)
         {
-            $client = new \Google_Client();
-            $client->setAssertionCredentials($this->getCredentials());
+            $this->client = new \Google_Client();
+            $this->client->setAssertionCredentials($this->getCredentials());
         }
 
         return $this->client;

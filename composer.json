@@ -22,8 +22,8 @@
     "google/apiclient": "~1.1"
   },
   "autoload": {
-    "psr-0": {
-      "Simplon\\Gplus": "src/"
+    "psr-4": {
+      "Simplon\\Gstorage\\": "src/Simplon/Gstorage"
     }
   }
 }

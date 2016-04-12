@@ -1,28 +1,39 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "9c0512207d8f12889b331ed4f1f8e559",
+    "hash": "f02a71350a09d3eb319dec73cf77c354",
+    "content-hash": "48eb12f8115ea96a1fe178c27ee6bfd7",
     "packages": [
         {
-            "name": "fightbulc/php_curl",
-            "version": "1.0.0",
+            "name": "google/apiclient",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fightbulc/php_curl.git",
-                "reference": "bb35c3918e1e9e4015f6ec246d5589aafa7068ab"
+                "url": "https://github.com/google/google-api-php-client.git",
+                "reference": "400f250a30ae1dd4c4a0a4f750fe973fc70e6311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fightbulc/php_curl/zipball/bb35c3918e1e9e4015f6ec246d5589aafa7068ab",
-                "reference": "bb35c3918e1e9e4015f6ec246d5589aafa7068ab",
+                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/400f250a30ae1dd4c4a0a4f750fe973fc70e6311",
+                "reference": "400f250a30ae1dd4c4a0a4f750fe973fc70e6311",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "~2.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -30,79 +41,24 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0"
+                "Apache-2.0"
             ],
-            "authors": [
-                {
-                    "name": "BauerUK",
-                    "homepage": "https://github.com/BauerUK"
-                }
-            ],
-            "description": "PHP CURL as object-oriented implementation.",
-            "homepage": "https://github.com/fightbulc/php_curl",
-            "time": "2012-10-22 00:29:11"
-        },
-        {
-            "name": "simplon/helper",
-            "version": "0.6.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fightbulc/simplon_helper.git",
-                "reference": "51a1db1ef9ebf0b0a423fbb027ea85be02d8674f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fightbulc/simplon_helper/zipball/51a1db1ef9ebf0b0a423fbb027ea85be02d8674f",
-                "reference": "51a1db1ef9ebf0b0a423fbb027ea85be02d8674f",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Simplon\\Helper": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tino Ehrich",
-                    "email": "tino@bigpun.me",
-                    "role": "developer"
-                }
-            ],
-            "description": "General helpers which come-in helpful.",
-            "homepage": "https://github.com/fightbulc/simplon_helper",
+            "description": "Client library for Google APIs",
+            "homepage": "http://developers.google.com/api-client-library/php",
             "keywords": [
-                "helper",
-                "json",
-                "numbers",
-                "strings",
-                "time"
+                "google"
             ],
-            "time": "2014-02-04 17:10:09"
+            "time": "2016-02-02 18:50:42"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.4"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

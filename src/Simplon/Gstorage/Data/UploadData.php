@@ -44,6 +44,8 @@ class UploadData
     /**
      * @param string $file
      * @param bool $isPublic
+     *
+     * @return $this
      */
     public function loadWithFile($file, $isPublic = true)
     {
@@ -51,18 +53,24 @@ class UploadData
         $this->fileName = array_pop($paths);
         $this->blob = file_get_contents($file);
         $this->isPublic = $isPublic;
+
+        return $this;
     }
 
     /**
      * @param string $fileName
      * @param string $blob
      * @param bool $isPublic
+     *
+     * @return $this
      */
     public function loadWithBlob($fileName, $blob, $isPublic = true)
     {
         $this->fileName = $fileName;
         $this->blob = $blob;
         $this->isPublic = $isPublic;
+
+        return $this;
     }
 
     /**

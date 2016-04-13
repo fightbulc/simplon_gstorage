@@ -21,11 +21,15 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
     /**
      * @param string $clientEmail
      * @param string $privateKey
+     *
+     * @return $this
      */
     public function loadFromParams($clientEmail, $privateKey)
     {
         $this->clientEmail = $clientEmail;
         $this->privateKey = $privateKey;
+
+        return $this;
     }
 
     /**

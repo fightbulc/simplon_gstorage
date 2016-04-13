@@ -35,11 +35,18 @@ class Gstorage
     private $storage;
 
     /**
-     * @param ServerAccountCredentialsInterface $credentials
+     * @var null|string
      */
-    public function __construct(ServerAccountCredentialsInterface $credentials)
+    private $urlCdn;
+
+    /**
+     * @param ServerAccountCredentialsInterface $credentials
+     * @param string|null $urlCdn
+     */
+    public function __construct(ServerAccountCredentialsInterface $credentials, $urlCdn = null)
     {
         $this->credentials = $credentials;
+        $this->urlCdn = $urlCdn;
     }
 
     /**
@@ -66,7 +73,7 @@ class Gstorage
 
         if ($obj)
         {
-            return new ObjectData($data->getBucket(), $obj->getName());
+            return new ObjectData($data->getBucket(), $obj->getName(), $this->urlCdn);
         }
 
         return null;

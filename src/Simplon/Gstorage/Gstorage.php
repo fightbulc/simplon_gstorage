@@ -16,6 +16,8 @@ class Gstorage
      * @link https://developers.google.com/identity/protocols/googlescopes#autoscalerv1beta2
      */
     const SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
+    const URL_PUBLIC_DOMAIN = 'storage.googleapis.com';
+    const URL_PUBLIC_PATTERN = 'http://{domain}/{bucket}/{fileName}';
 
     /**
      * @var ServerAccountCredentialsInterface
@@ -80,6 +82,16 @@ class Gstorage
         $response = $this->getStorage()->objects->delete($data->getBucket(), $data->getFileName());
 
         return $response === null;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return bool
+     */
+    public function isStorageUrl($url)
+    {
+        return strpos($url, self::URL_PUBLIC_DOMAIN) !== false;
     }
 
     /**

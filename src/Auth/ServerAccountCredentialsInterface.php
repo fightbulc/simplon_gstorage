@@ -11,10 +11,10 @@ interface ServerAccountCredentialsInterface
     /**
      * @return string
      */
-    public function getClientEmail();
+    public function getClientEmail(): string;
 
     /**
      * @return string
      */
-    public function getPrivateKey();
+    public function getPrivateKey(): string;
 }

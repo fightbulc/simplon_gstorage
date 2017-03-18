@@ -12,22 +12,18 @@ class UploadData
      * @var string
      */
     private $bucket;
-
     /**
      * @var string
      */
     private $fileName;
-
     /**
      * @var string
      */
     private $blob;
-
     /**
      * @var string
      */
     private $mimeType;
-
     /**
      * @var bool
      */
@@ -36,7 +32,7 @@ class UploadData
     /**
      * @param string $bucket
      */
-    public function __construct($bucket)
+    public function __construct(string $bucket)
     {
         $this->bucket = $bucket;
     }
@@ -45,9 +41,9 @@ class UploadData
      * @param string $file
      * @param bool $isPublic
      *
-     * @return $this
+     * @return UploadData
      */
-    public function loadWithFile($file, $isPublic = true)
+    public function loadWithFile(string $file, bool $isPublic = true): self
     {
         $paths = explode('/', $file);
         $this->fileName = array_pop($paths);
@@ -62,9 +58,9 @@ class UploadData
      * @param string $blob
      * @param bool $isPublic
      *
-     * @return $this
+     * @return UploadData
      */
-    public function loadWithBlob($fileName, $blob, $isPublic = true)
+    public function loadWithBlob(string $fileName, string $blob, bool $isPublic = true): self
     {
         $this->fileName = $fileName;
         $this->blob = $blob;
@@ -76,7 +72,7 @@ class UploadData
     /**
      * @return string
      */
-    public function getBucket()
+    public function getBucket(): string
     {
         return $this->bucket;
     }
@@ -84,7 +80,7 @@ class UploadData
     /**
      * @return string
      */
-    public function getFileName()
+    public function getFileName(): string
     {
         return $this->fileName;
     }
@@ -92,7 +88,7 @@ class UploadData
     /**
      * @return string
      */
-    public function getFileExtension()
+    public function getFileExtension(): string
     {
         $parts = explode('.', $this->fileName);
         $ext = array_pop($parts);
@@ -103,7 +99,7 @@ class UploadData
     /**
      * @return string
      */
-    public function getBlob()
+    public function getBlob(): string
     {
         return $this->blob;
     }
@@ -111,7 +107,7 @@ class UploadData
     /**
      * @return string
      */
-    public function getMimeType()
+    public function getMimeType(): string
     {
         if ($this->mimeType === null)
         {
@@ -130,7 +126,7 @@ class UploadData
     /**
      * @return boolean
      */
-    public function isPublic()
+    public function isPublic(): bool
     {
         return $this->isPublic === true;
     }

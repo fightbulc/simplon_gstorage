@@ -1,13 +1,15 @@
 {
   "name": "simplon/gstorage",
-  "description": "Google Cloud Storage Helper Library",
+  "description": "Google Cloud Storage API (service account client)",
   "homepage": "https://github.com/fightbulc/simplon_gstorage",
   "type": "library",
   "keywords": [
+    "service account",
     "google cloud storage",
     "client",
     "upload",
-    "files"
+    "files",
+    "api"
   ],
   "license": "MIT",
   "authors": [
@@ -18,12 +20,12 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
-    "google/apiclient": "~1.1"
+    "php": ">=7.1",
+    "google/apiclient": "^2.1"
   },
   "autoload": {
     "psr-4": {
-      "Simplon\\Gstorage\\": "src/Simplon/Gstorage"
+      "Simplon\\Gstorage\\": "src/"
     }
   }
 }

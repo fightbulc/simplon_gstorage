@@ -12,7 +12,6 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
      * @var string
      */
     private $clientEmail;
-
     /**
      * @var string
      */
@@ -22,9 +21,9 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
      * @param string $clientEmail
      * @param string $privateKey
      *
-     * @return $this
+     * @return ServerAccountCredentials
      */
-    public function loadFromParams($clientEmail, $privateKey)
+    public function loadFromParams(string $clientEmail, string $privateKey): self
     {
         $this->clientEmail = $clientEmail;
         $this->privateKey = $privateKey;
@@ -35,10 +34,10 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
     /**
      * @param string $jsonFile
      *
-     * @return $this
+     * @return ServerAccountCredentials
      * @throws \Exception
      */
-    public function loadFromJsonFile($jsonFile)
+    public function loadFromJsonFile(string $jsonFile): self
     {
         $data = file_get_contents($jsonFile);
 
@@ -61,7 +60,7 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
     /**
      * @return string
      */
-    public function getClientEmail()
+    public function getClientEmail(): string
     {
         return $this->clientEmail;
     }
@@ -69,7 +68,7 @@ class ServerAccountCredentials implements ServerAccountCredentialsInterface
     /**
      * @return string
      */
-    public function getPrivateKey()
+    public function getPrivateKey(): string
     {
         return $this->privateKey;
     }

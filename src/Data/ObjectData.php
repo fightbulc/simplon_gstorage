@@ -14,37 +14,35 @@ class ObjectData
      * @var string
      */
     private $bucket;
-
     /**
      * @var string
      */
     private $fileName;
-
     /**
      * @var null|string
      */
-    private $urlCdn;
+    private $urlCDN;
 
     /**
      * @param string $bucket
      * @param string $fileName
-     * @param string|null $urlCdn
+     * @param null|string $urlCDN
      */
-    public function __construct($bucket, $fileName, $urlCdn = null)
+    public function __construct(string $bucket, string $fileName, ?string $urlCDN = null)
     {
         $this->bucket = $bucket;
         $this->fileName = $fileName;
-        $this->urlCdn = $urlCdn;
+        $this->urlCDN = $urlCDN;
     }
 
     /**
      * @return string
      */
-    public function getUrlPublic()
+    public function getUrlPublic(): string
     {
-        if ($this->urlCdn)
+        if ($this->urlCDN)
         {
-            return trim($this->urlCdn, '/') . '/' . $this->fileName;
+            return trim($this->urlCDN, '/') . '/' . $this->fileName;
         }
 
         $pattern = str_replace('{domain}', Gstorage::URL_PUBLIC_DOMAIN, Gstorage::URL_PUBLIC_PATTERN);
@@ -57,7 +55,7 @@ class ObjectData
     /**
      * @return string
      */
-    public function getBucket()
+    public function getBucket(): string
     {
         return $this->bucket;
     }
@@ -65,7 +63,7 @@ class ObjectData
     /**
      * @return string
      */
-    public function getFileName()
+    public function getFileName(): string
     {
         return $this->fileName;
     }

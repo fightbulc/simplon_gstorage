@@ -15,7 +15,6 @@ class Gstorage
     /**
      * @link https://developers.google.com/identity/protocols/googlescopes#autoscalerv1beta2
      */
-    const SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
     const URL_PUBLIC_DOMAIN = 'storage.googleapis.com';
     const URL_PUBLIC_PATTERN = 'http://{domain}/{bucket}/{fileName}';
 
@@ -23,38 +22,36 @@ class Gstorage
      * @var ServerAccountCredentialsInterface
      */
     private $credentials;
-
     /**
      * @var \Google_Client
      */
     private $client;
-
     /**
      * @var \Google_Service_Storage
      */
     private $storage;
-
     /**
      * @var null|string
      */
-    private $urlCdn;
+    private $urlCDN;
 
     /**
      * @param ServerAccountCredentialsInterface $credentials
-     * @param string|null $urlCdn
+     * @param null|string $urlCDN
      */
-    public function __construct(ServerAccountCredentialsInterface $credentials, $urlCdn = null)
+    public function __construct(ServerAccountCredentialsInterface $credentials, ?string $urlCDN = null)
     {
         $this->credentials = $credentials;
-        $this->urlCdn = $urlCdn;
+        $this->urlCDN = $urlCDN;
     }
 
     /**
      * @param UploadData $data
      *
      * @return null|ObjectData
+     * @throws \Google_Exception
      */
-    public function upload(UploadData $data)
+    public function upload(UploadData $data): ?ObjectData
     {
         $obj = new \Google_Service_Storage_StorageObject();
         $fileName = $this->buildRandomToken();
@@ -67,13 +64,9 @@ class Gstorage
             'predefinedAcl' => $data->isPublic() ? 'publicread' : null,
         ];
 
-        $obj = $this->getStorage()->objects->insert(
-            $data->getBucket(), $obj, $options
-        );
-
-        if ($obj)
+        if ($obj = $this->getStorage()->objects->insert($data->getBucket(), $obj, $options))
         {
-            return new ObjectData($data->getBucket(), $obj->getName(), $this->urlCdn);
+            return new ObjectData($data->getBucket(), $obj->getName(), $this->urlCDN);
         }
 
         return null;
@@ -83,10 +76,13 @@ class Gstorage
      * @param ObjectData $data
      *
      * @return bool
+     * @throws \Google_Exception
      */
-    public function delete(ObjectData $data)
+    public function delete(ObjectData $data): bool
     {
-        $response = $this->getStorage()->objects->delete($data->getBucket(), $data->getFileName());
+        $response = $this->getStorage()->objects->delete(
+            $data->getBucket(), $data->getFileName()
+        );
 
         return $response === null;
     }
@@ -96,17 +92,18 @@ class Gstorage
      *
      * @return bool
      */
-    public function isStorageUrl($url)
+    public function isStorageUrl(string $url): bool
     {
         return strpos($url, self::URL_PUBLIC_DOMAIN) !== false;
     }
 
     /**
      * @return \Google_Service_Storage
+     * @throws \Google_Exception
      */
-    private function getStorage()
+    private function getStorage(): \Google_Service_Storage
     {
-        if ($this->storage === null)
+        if (!$this->storage)
         {
             $this->storage = new \Google_Service_Storage($this->getClient());
         }
@@ -115,22 +112,23 @@ class Gstorage
     }
 
     /**
-     * @return \Google_Auth_AssertionCredentials
-     */
-    private function getCredentials()
-    {
-        return new \Google_Auth_AssertionCredentials($this->credentials->getClientEmail(), [self::SCOPE], $this->credentials->getPrivateKey());
-    }
-
-    /**
      * @return \Google_Client
+     * @throws \Google_Exception
      */
-    private function getClient()
+    private function getClient(): \Google_Client
     {
-        if ($this->client === null)
+        if (!$this->client)
         {
             $this->client = new \Google_Client();
-            $this->client->setAssertionCredentials($this->getCredentials());
+
+            $this->client->setAuthConfig([
+                'type'         => 'service_account',
+                'client_id'    => $this->credentials->getClientEmail(),
+                'client_email' => $this->credentials->getClientEmail(),
+                'private_key'  => $this->credentials->getPrivateKey(),
+            ]);
+
+            $this->client->addScope([\Google_Service_Storage::DEVSTORAGE_READ_WRITE]);
         }
 
         return $this->client;
@@ -141,7 +139,7 @@ class Gstorage
      *
      * @return string
      */
-    private function buildRandomToken($length = 24)
+    private function buildRandomToken(int $length = 24): string
     {
         $randomString = '';
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
